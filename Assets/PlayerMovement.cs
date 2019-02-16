@@ -3,7 +3,7 @@
 public class PlayerMovement : MonoBehaviour
 {
     private CharacterController controller;
-    private float speed = 2f;
+    private float speed = 3f;
     private Vector3 movement;
     private float verticalVelocity = 0.0f;
 
@@ -18,10 +18,13 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         movement = Vector3.zero;
-
+        //update x
         movement.x = Input.GetAxisRaw("Horizontal") * speed;
+        //update y
         movement.y = verticalVelocity;
-        movement.z = 1 * speed;
+        //update z
+        movement.z = speed;
+
         controller.Move(movement * Time.deltaTime);
         
     }
