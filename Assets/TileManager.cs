@@ -6,40 +6,67 @@ public class TileManager : MonoBehaviour
 {
     public GameObject[] tiles;
     private Transform player;
-    private int spawnPos = 0;
-    private int tilesOnScreen = 5;
+    private int tilesOnScreen = 10;
     private int tileLength = 4;
-    // Start is called before the first frame update
+    private List<GameObject> activeTiles;
+    private int count;
+    private float speed = 3.0f;
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        activeTiles = new List<GameObject>();
 
-
-        for(int i = 0; i < tilesOnScreen; i++)
+        int spawnPos = 0;
+        for (int i = 0; i < tilesOnScreen; i++)
         {
-            SpawnTile();
+            GameObject obj = ObjectPool.current.GetPooledObject();
+            obj.SetActive(true);
+            obj.transform.position = new Vector3(0, 0, spawnPos);
+            //set newly spawned tile to be ObjectPool children
+            obj.transform.SetParent(ObjectPool.current.transform);
+            spawnPos += tileLength;
+            activeTiles.Add(obj);
         }
+
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if(player.position.z > (spawnPos - tileLength * tilesOnScreen))
+        for (int i = 0; i < tilesOnScreen; i++)
+        {
+            activeTiles[i].transform.Translate(-Vector3.forward * Time.deltaTime * speed);
+        }
+
+        if(player.position.z > activeTiles[2].transform.position.z)
         {
             SpawnTile();
+            DestroyTile();
         }
+        /*
+        if (player.position.z > (spawnPos - tileLength * (tilesOnScreen - 2)))
+        {
+            DestroyTile();
+            SpawnTile();
+            count++;
+        }*/
+
     }
 
     private void SpawnTile()
     {
         GameObject obj = ObjectPool.current.GetPooledObject();
-        Debug.Log(obj);
-        //GameObject obj = Instantiate(tiles[0]) as GameObject;
         obj.SetActive(true);
-        obj.transform.position = new Vector3(0, 0, spawnPos);
-        //set newly spawned tile to be TileManager children
-        obj.transform.SetParent(transform);
-        spawnPos += tileLength;
+        //set position of new tile to be at the last tile in the activeTiles[] list
+        obj.transform.position = new Vector3(0, 0, activeTiles[tilesOnScreen-1].transform.position.z + tileLength);
+        //set newly spawned tile to be ObjectPool children
+        obj.transform.SetParent(ObjectPool.current.transform);
+        activeTiles.Add(obj);
+    }
 
+    private void DestroyTile()
+    {
+        //put back "destroyed" object into ObjectPool
+        activeTiles[0].SetActive(false);
+        activeTiles.RemoveAt(0);
     }
 }
