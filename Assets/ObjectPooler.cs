@@ -64,7 +64,7 @@ public class ObjectPooler : MonoBehaviour
         }
 
         //if no reusable object in pool, create new one
-        currentPrefab = getCurrentPrefab(tag);
+        currentPrefab = GetCurrentPrefab(tag);
         GameObject obj = Instantiate(currentPrefab) as GameObject;
         poolDictionary[tag].Add(obj);
         obj.SetActive(true);
@@ -77,7 +77,7 @@ public class ObjectPooler : MonoBehaviour
         obj.SetActive(false);
     }
 
-    public GameObject getCurrentPrefab(string tag)
+    public GameObject GetCurrentPrefab(string tag)
     {
         for (int i = 0; i < pools.Count; i++)
         {
@@ -88,5 +88,10 @@ public class ObjectPooler : MonoBehaviour
         }
 
         return null;
+    }
+
+    public int GetObstacleTypes()
+    {
+        return pools.Count - 1; //subtract the Tile pool
     }
 }
