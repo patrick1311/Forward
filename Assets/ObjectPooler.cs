@@ -37,6 +37,7 @@ public class ObjectPooler : MonoBehaviour
             {
                 GameObject obj = Instantiate(pool.prefab);
                 obj.SetActive(false);
+                obj.transform.SetParent(this.transform);    //set all pool objects under ObjectPooler for management purposes
                 objectPool.Add(obj);
             }
 
@@ -67,6 +68,7 @@ public class ObjectPooler : MonoBehaviour
         GameObject obj = Instantiate(currentPrefab) as GameObject;
         poolDictionary[tag].Add(obj);
         obj.SetActive(true);
+        obj.transform.SetParent(this.transform);
         return obj;
     }
 

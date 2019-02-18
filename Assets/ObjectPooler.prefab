@@ -48,3 +48,11 @@ MonoBehaviour:
     prefab: {fileID: 8972388115308208219, guid: d02a43dabf3bd4eefb6453462d7baba9,
       type: 3}
     size: 10
+  - tag: Tree
+    prefab: {fileID: 6325873962370634653, guid: 4d7eb359614514a5da7fb903144707f5,
+      type: 3}
+    size: 10
+  - tag: Rock
+    prefab: {fileID: 5318834257132303023, guid: 266544ae341114e30b3058b1a5e5d63f,
+      type: 3}
+    size: 10
