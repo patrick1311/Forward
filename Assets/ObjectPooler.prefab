@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7629424190272624262
+--- !u!1 &4696554061618720169
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,40 +8,43 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7629424190272624260}
-  - component: {fileID: 7629424190272624263}
+  - component: {fileID: 4696554061618720171}
+  - component: {fileID: 4696554061618720168}
   m_Layer: 0
-  m_Name: ObjectPool
+  m_Name: ObjectPooler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7629424190272624260
+--- !u!4 &4696554061618720171
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7629424190272624262}
+  m_GameObject: {fileID: 4696554061618720169}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.94368374, z: -3.5132468}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7629424190272624263
+--- !u!114 &4696554061618720168
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7629424190272624262}
+  m_GameObject: {fileID: 4696554061618720169}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb3ba9442d70149d5ab392074a031623, type: 3}
+  m_Script: {fileID: 11500000, guid: 67300af9182ed45f0affde35b24555ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: {fileID: 8972388115308208219, guid: d02a43dabf3bd4eefb6453462d7baba9, type: 3}
-  amount: 5
+  pools:
+  - tag: Tile
+    prefab: {fileID: 8972388115308208219, guid: d02a43dabf3bd4eefb6453462d7baba9,
+      type: 3}
+    size: 10
