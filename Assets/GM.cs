@@ -6,12 +6,14 @@ public class GM : MonoBehaviour
 {
     public TileManager tileManager;
     public ObstacleManager obstacleManager;
+    private Transform camera;
     private Transform player;
     private readonly float speed = 10.0f;
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        camera = GameObject.FindGameObjectWithTag("MainCamera").transform;
     }
 
     void Update()
@@ -28,7 +30,7 @@ public class GM : MonoBehaviour
         }
 
         //delete obstacle if it is in the safe zone (out of player view)
-        if(obstacleManager.CanBeDeleted(player.position.z))
+        while(obstacleManager.CanBeDeleted(camera.position.z))
         {
             obstacleManager.DestroyObstacle();
         }

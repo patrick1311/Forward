@@ -45,10 +45,10 @@ public class ObstacleManager : MonoBehaviour
         activeObstacle.RemoveAt(0);
     }
 
-    public bool CanBeDeleted(float playerPosZ)
+    public bool CanBeDeleted(float cameraPosZ)
     {
-        if (activeObstacle.Count <= 2)
+        if (activeObstacle.Count < 1)
             return false;
-        return playerPosZ > activeObstacle[2].transform.position.z;
+        return cameraPosZ > activeObstacle[0].transform.position.z;
     }
 }
