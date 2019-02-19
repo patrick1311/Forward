@@ -52,7 +52,7 @@ public class TileManager : MonoBehaviour
         activeTiles.RemoveAt(0);
     }
 
-    public float GetNewTilePosition()
+    public float GetNewTilePosZ()
     {
         return activeTiles[tilesOnScreen - 1].transform.position.z + tileLength;
     }

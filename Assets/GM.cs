@@ -8,6 +8,7 @@ public class GM : MonoBehaviour
     public ObstacleManager obstacleManager;
     private Transform camera;
     private Transform player;
+    private float lastSpawnPos;
     private readonly float speed = 10.0f;
 
     void Start()
@@ -25,23 +26,15 @@ public class GM : MonoBehaviour
         if (player.position.z > tileManager.GetSafeZone())
         {
             tileManager.SpawnTile();
-            SpawnObstacles(Random.Range(1, 3)); //spawn 1 or 2 obstacles on each tile
+            //spawn 1 or 2 obstacles on each tile
+            obstacleManager.SpawnMulObstacles(Mathf.Abs(Random.Range(1, 3)), tileManager.GetNewTilePosZ());
             tileManager.DestroyTile();
         }
-
-        //delete obstacle if it is in the safe zone (out of player view)
+        
+        //delete GameObject if they are in the safe zone (out of player view)
         while(obstacleManager.CanBeDeleted(camera.position.z))
         {
             obstacleManager.DestroyObstacle();
-        }
-    }
-
-    void SpawnObstacles(int amount)
-    {
-        while(amount > 0)
-        {
-            obstacleManager.SpawnObstacle(tileManager.GetNewTilePosition());
-            amount--;
         }
     }
 

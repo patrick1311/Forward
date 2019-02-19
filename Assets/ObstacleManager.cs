@@ -7,7 +7,6 @@ public class ObstacleManager : MonoBehaviour
     public GM GameManager;
     public int totalObstacles = 20;
     private int typesOfObstacle;
-    private float lastSpawnPos;
     private List<GameObject> activeObstacle;
     private List<int> numObstacleOnTile;
 
@@ -26,7 +25,7 @@ public class ObstacleManager : MonoBehaviour
         }
     }
 
-    public void SpawnObstacle(float tileZPos)
+    public void SpawnObstacle(Vector3 spawnPos)
     {
         GameObject obj;
 
@@ -34,15 +33,45 @@ public class ObstacleManager : MonoBehaviour
             obj = ObjectPooler.Instance.GetPooledObject("Tree");
         else
             obj = ObjectPooler.Instance.GetPooledObject("Rock");
-            
-        obj.transform.position = new Vector3(Random.Range(-2, 3), 1, tileZPos);
+
+        obj.transform.position = spawnPos;
         activeObstacle.Add(obj);
+    }
+
+    public void SpawnMulObstacles(int amount, float tilePosZ)
+    {
+        Vector3 spawnPos = new Vector3(Random.Range(-2, 3), 1, tilePosZ);
+        List<Vector3> occupiedPos = new List<Vector3>();
+
+        while(amount > 0)
+        {
+            if(SafeToSpawn(occupiedPos, spawnPos))
+            {
+                SpawnObstacle(spawnPos);
+                occupiedPos.Add(spawnPos);
+                amount--;
+            }
+            else
+            {
+                spawnPos.x = Random.Range(-2, 3);
+            }
+        }
     }
 
     public void DestroyObstacle()
     {
         ObjectPooler.Instance.ReturnPooledObject(activeObstacle[0]);
         activeObstacle.RemoveAt(0);
+    }
+
+    bool SafeToSpawn(List<Vector3> occupiedPos, Vector3 pos)
+    {
+        for(int i = 0; i < occupiedPos.Count; i++)
+        {
+            if (occupiedPos[i] == pos)
+                return false;
+        }
+        return true;
     }
 
     public bool CanBeDeleted(float cameraPosZ)
