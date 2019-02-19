@@ -7,7 +7,7 @@ public class GM : MonoBehaviour
     public TileManager tileManager;
     public ObstacleManager obstacleManager;
     private Transform player;
-    private readonly float speed = 5.0f;
+    private readonly float speed = 10.0f;
 
     void Start()
     {
@@ -23,7 +23,7 @@ public class GM : MonoBehaviour
         if (player.position.z > tileManager.GetSafeZone())
         {
             tileManager.SpawnTile();
-            obstacleManager.SpawnObstacle(tileManager.GetNewTilePosition());
+            SpawnObstacles(Random.Range(1, 3)); //spawn 1 or 2 obstacles on each tile
             tileManager.DestroyTile();
         }
 
@@ -31,6 +31,15 @@ public class GM : MonoBehaviour
         if(obstacleManager.CanBeDeleted(player.position.z))
         {
             obstacleManager.DestroyObstacle();
+        }
+    }
+
+    void SpawnObstacles(int amount)
+    {
+        while(amount > 0)
+        {
+            obstacleManager.SpawnObstacle(tileManager.GetNewTilePosition());
+            amount--;
         }
     }
 

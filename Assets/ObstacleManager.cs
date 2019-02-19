@@ -7,12 +7,15 @@ public class ObstacleManager : MonoBehaviour
     public GM GameManager;
     public int totalObstacles = 20;
     private int typesOfObstacle;
+    private float lastSpawnPos;
     private List<GameObject> activeObstacle;
+    private List<int> numObstacleOnTile;
 
     void Start()
     {
         typesOfObstacle = ObjectPooler.Instance.GetObstacleTypes();
         activeObstacle = new List<GameObject>();
+        numObstacleOnTile = new List<int>();
     }
 
     public void MoveBack(float backwardSpeed)
@@ -25,16 +28,14 @@ public class ObstacleManager : MonoBehaviour
 
     public void SpawnObstacle(float tileZPos)
     {
-        string name;
-        int xPos = Random.Range(-2, 3);
+        GameObject obj;
 
         if (Random.Range(0, 2) % typesOfObstacle == 0)
-            name = "Tree";
+            obj = ObjectPooler.Instance.GetPooledObject("Tree");
         else
-            name = "Rock";
-
-        GameObject obj = ObjectPooler.Instance.GetPooledObject(name);
-        obj.transform.position = new Vector3(xPos, 1, tileZPos);
+            obj = ObjectPooler.Instance.GetPooledObject("Rock");
+            
+        obj.transform.position = new Vector3(Random.Range(-2, 3), 1, tileZPos);
         activeObstacle.Add(obj);
     }
 

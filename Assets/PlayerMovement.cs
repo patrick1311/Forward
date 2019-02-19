@@ -3,7 +3,7 @@
 public class PlayerMovement : MonoBehaviour
 {
     private CharacterController controller;
-    public float speed = 3f;
+    private float speed = 5f;
     private Vector3 movement;
     private float verticalVelocity = 0.0f;
     public static Vector3 initPos;
@@ -29,6 +29,4 @@ public class PlayerMovement : MonoBehaviour
         controller.Move(movement * Time.deltaTime);
         
     }
-
-    public float getSpeed() { return speed; }
 }
