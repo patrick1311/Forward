@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class TileManager : MonoBehaviour
 {
-    public GM GameManager;
     public int tilesOnScreen = 10;
     private readonly int tileLength = 5;
     private List<GameObject> activeTiles;

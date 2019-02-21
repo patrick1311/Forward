@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ObstacleManager : MonoBehaviour
 {
-    public GM GameManager;
     public int totalObstacles = 20;
     private int typesOfObstacle;
     private List<GameObject> activeObstacle;
