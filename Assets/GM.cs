@@ -1,20 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GM : MonoBehaviour
 {
     public TileManager tileManager;
     public ObstacleManager obstacleManager;
+    public Text score;
     private Transform camera;
     private Transform player;
-    private float lastSpawnPos;
     private readonly float speed = 10.0f;
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         camera = GameObject.FindGameObjectWithTag("MainCamera").transform;
+        score.text = "0";
     }
 
     void Update()

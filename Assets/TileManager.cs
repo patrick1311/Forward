@@ -7,7 +7,6 @@ public class TileManager : MonoBehaviour
     public GM GameManager;
     public int tilesOnScreen = 10;
     private readonly int tileLength = 5;
-    private float speed = 3.0f;
     private List<GameObject> activeTiles;
 
 
