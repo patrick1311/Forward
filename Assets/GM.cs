@@ -7,7 +7,7 @@ public class GM : MonoBehaviour
 {
     public TileManager tileManager;
     public ObstacleManager obstacleManager;
-    public Text score;
+    public ScoreManager scoreManager;
     private Transform camera;
     private Transform player;
     private readonly float speed = 10.0f;
@@ -16,7 +16,6 @@ public class GM : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         camera = GameObject.FindGameObjectWithTag("MainCamera").transform;
-        score.text = "0";
     }
 
     void Update()
@@ -24,9 +23,13 @@ public class GM : MonoBehaviour
         tileManager.MoveBack(speed);
         obstacleManager.MoveBack(speed);
 
-        //Respawn GameObject to starting position
+       
         if (player.position.z > tileManager.GetSafeZone())
         {
+            //Increase score by 1
+            scoreManager.IncreaseScore();
+
+            //Respawn GameObject to starting position
             tileManager.SpawnTile();
             //spawn 1 or 2 obstacles on each tile
             obstacleManager.SpawnMulObstacles(Mathf.Abs(Random.Range(1, 3)), tileManager.GetNewTilePosZ());
