@@ -25,8 +25,8 @@ public class PlayerMovement : MonoBehaviour
         movement.y = verticalVelocity;
         //update z
         //movement.z = speed;
-
-        controller.Move(movement * Time.deltaTime);
+        transform.Translate(movement * Time.deltaTime);
+        //controller.Move(movement * Time.deltaTime);
         
     }
 }
