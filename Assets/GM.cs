@@ -8,23 +8,26 @@ public class GM : MonoBehaviour
     public TileManager tileManager;
     public ObstacleManager obstacleManager;
     public ScoreManager scoreManager;
+    private GameObject player;
     private Transform camera;
-    private Transform player;
-    private readonly float speed = 10.0f;
+    //private Transform player;
+    private float speed = 10.0f;
+    private bool endGame = false;
 
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        player = GameObject.FindGameObjectWithTag("Player");
         camera = GameObject.FindGameObjectWithTag("MainCamera").transform;
     }
 
     void Update()
     {
+
         tileManager.MoveBack(speed);
         obstacleManager.MoveBack(speed);
 
        
-        if (player.position.z > tileManager.GetSafeZone())
+        if (player.transform.position.z > tileManager.GetSafeZone())
         {
             //Increase score by 1
             scoreManager.IncreaseScore();
@@ -41,6 +44,11 @@ public class GM : MonoBehaviour
         {
             obstacleManager.DestroyObstacle();
         }
+    }
+
+    public void EndGame()
+    {
+        speed = 0;
     }
 
 }
