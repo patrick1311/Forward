@@ -46,7 +46,6 @@ public class PlayerMovement : MonoBehaviour
     //create dying animation
     public void PushPlayer()
     {
-
-        GetComponent<Rigidbody>().AddForce(0, 0, 300);
+        GetComponent<Rigidbody>().AddForce(0, 0, 400);
     }
 }
