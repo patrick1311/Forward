@@ -3,6 +3,7 @@
 public class PlayerMovement : MonoBehaviour
 {
     private CharacterController controller;
+    private Rigidbody rb;
     private float speed = 5f;
     private Vector3 movement;
     private float verticalVelocity = 0.0f;
@@ -14,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     {
         controller = GetComponent<CharacterController>();
         initPos = GetComponent<Transform>().position;
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -37,7 +39,8 @@ public class PlayerMovement : MonoBehaviour
     public void StopMovement()
     {
         movementEnabled = false;
-        GetComponent<Rigidbody>().useGravity = true;
+        rb.useGravity = true;
+        rb.constraints = RigidbodyConstraints.None;
     }
 
     //create dying animation
