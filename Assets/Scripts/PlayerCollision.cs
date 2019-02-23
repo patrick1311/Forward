@@ -15,10 +15,10 @@ public class PlayerCollision : MonoBehaviour
             collision.collider.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
             Debug.Log("Hit an obstacle");
             playerMovement.StopMovement();
-            //playerMovement.PushPlayer();
+            playerMovement.PushPlayer();
 
             //Stop environment from moving
-            FindObjectOfType<GM>().EndGame();
+            FindObjectOfType<GM>().EndRun();
         }
     }
 }

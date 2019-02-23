@@ -19,4 +19,9 @@ public class ScoreManager : MonoBehaviour
         score += increaseAmount;
         scoreText.text = score.ToString();
     }
+
+    public int GetScore()
+    {
+        return score;
+    }
 }
