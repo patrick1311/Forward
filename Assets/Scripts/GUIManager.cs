@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GUIManager : MonoBehaviour
 {
@@ -24,5 +25,15 @@ public class GUIManager : MonoBehaviour
     {
         scoreText.text = scoreManager.GetScore().ToString();
         endMenu.SetActive(true);
+    }
+
+    public void RestartRunScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void GoToHomeScreen()
+    {
+
     }
 }

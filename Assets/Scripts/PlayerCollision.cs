@@ -13,9 +13,8 @@ public class PlayerCollision : MonoBehaviour
             //collision.collider.GetComponent<Rigidbody>().useGravity = true;
             //collision.collider.GetComponent<Rigidbody>().c = false;
             collision.collider.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
-            Debug.Log("Hit an obstacle");
             playerMovement.StopMovement();
-            playerMovement.PushPlayer();
+            //playerMovement.PushPlayer();
 
             //Stop environment from moving
             FindObjectOfType<GM>().EndRun();

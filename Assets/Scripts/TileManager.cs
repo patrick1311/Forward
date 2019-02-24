@@ -17,7 +17,7 @@ public class TileManager : MonoBehaviour
         if (tilesOnScreen < 3)
             tilesOnScreen = 5;
 
-        int spawnPos = 0;
+        int spawnPos = (int) GameObject.FindGameObjectWithTag("MainCamera").transform.position.z;
         for (int i = 0; i < tilesOnScreen; i++)
         {
             GameObject obj = ObjectPooler.Instance.GetPooledObject("Tile");
