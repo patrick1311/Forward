@@ -14,10 +14,10 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
-  m_Fog: 0
-  m_FogColor: {r: 0.42352945, g: 0.4039216, b: 0.40000004, a: 1}
+  m_Fog: 1
+  m_FogColor: {r: 0.4156863, g: 0.8078432, b: 0.65882355, a: 1}
   m_FogMode: 3
-  m_FogDensity: 0.08
+  m_FogDensity: 0.03
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
@@ -9091,7 +9091,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 298350ce25c0547ff8a8c266b570dea1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tilesOnScreen: 10
+  tilesOnScreen: 15
 --- !u!4 &1499760706
 Transform:
   m_ObjectHideFlags: 0
@@ -13690,7 +13690,7 @@ PrefabInstance:
     - target: {fileID: 4696554061618720168, guid: 7a46307d907b14cb4b4dc3ccad1e1fc1,
         type: 3}
       propertyPath: pools.Array.data[1].size
-      value: 10
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4696554061618720168, guid: 7a46307d907b14cb4b4dc3ccad1e1fc1,
         type: 3}
@@ -13706,7 +13706,12 @@ PrefabInstance:
     - target: {fileID: 4696554061618720168, guid: 7a46307d907b14cb4b4dc3ccad1e1fc1,
         type: 3}
       propertyPath: pools.Array.data[2].size
-      value: 10
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4696554061618720168, guid: 7a46307d907b14cb4b4dc3ccad1e1fc1,
+        type: 3}
+      propertyPath: pools.Array.data[0].size
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a46307d907b14cb4b4dc3ccad1e1fc1, type: 3}
