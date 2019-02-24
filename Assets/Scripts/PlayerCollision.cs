@@ -10,8 +10,6 @@ public class PlayerCollision : MonoBehaviour
     {
         if(collision.collider.tag == "Obstacle")
         {
-            //collision.collider.GetComponent<Rigidbody>().useGravity = true;
-            //collision.collider.GetComponent<Rigidbody>().c = false;
             collision.collider.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
             playerMovement.StopMovement();
             //playerMovement.PushPlayer();
