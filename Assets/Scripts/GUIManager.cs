@@ -32,8 +32,8 @@ public class GUIManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    public void GoToHomeScreen()
+    public void GoToHomeMenu()
     {
-
+        SceneManager.LoadScene("HomeMenu");
     }
 }
