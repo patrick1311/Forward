@@ -6,15 +6,19 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody rb;
     private float speed = 5f;
     private Vector3 movement;
-    private float verticalVelocity = 0.0f;
-    public static Vector3 initPos;
     private bool movementEnabled = true;
+    private float width;
+    private float height;
+    private Touch touch;
 
-    // Start is called before the first frame update
+    private void Awake()
+    {
+        width = (float)Screen.width / 2.0f;
+        height = (float)Screen.height / 2.0f;
+    }
     void Start()
     {
         controller = GetComponent<CharacterController>();
-        initPos = GetComponent<Transform>().position;
         rb = GetComponent<Rigidbody>();
     }
 
@@ -26,12 +30,21 @@ public class PlayerMovement : MonoBehaviour
             movement = Vector3.zero;
             //update x
             movement.x = Input.GetAxisRaw("Horizontal") * speed;
-            //update y
-            movement.y = verticalVelocity;
-            //update z
-            //movement.z = speed;
+
+            if(Input.touchCount > 0)
+            {
+                //Vector2 pos = Input.GetTouch(0).position;
+                if (Input.GetTouch(0).position.x > width)
+                {
+                    movement.x = speed;
+                }
+                else
+                {
+                    movement.x = -speed;
+                }
+            }
+
             transform.Translate(movement * Time.deltaTime);
-            //controller.Move(movement * Time.deltaTime);
         }
 
     }
