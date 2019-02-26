@@ -12,7 +12,7 @@ public class PlayerCollision : MonoBehaviour
         {
             collision.collider.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
             playerMovement.StopMovement();
-            //playerMovement.PushPlayer();
+            playerMovement.PushPlayer();
 
             //Stop environment from moving
             FindObjectOfType<GM>().EndRun();

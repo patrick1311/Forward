@@ -4,9 +4,10 @@ public class PlayerMovement : MonoBehaviour
 {
     private CharacterController controller;
     private Rigidbody rb;
-    private float speed = 5f;
+    private float speed = 4.8f;
     private Vector3 movement;
     private bool movementEnabled = true;
+    private bool hasFinalPush = true;
     private float width;
     private float height;
     private Touch touch;
@@ -49,6 +50,12 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+    public void SetPlayerSpeed(float gameSpeed)
+    {
+        speed = gameSpeed * 0.6f;
+        Debug.Log("Player speed: " + speed);
+    }
+
     public void StopMovement()
     {
         movementEnabled = false;
@@ -59,6 +66,10 @@ public class PlayerMovement : MonoBehaviour
     //create dying animation
     public void PushPlayer()
     {
-        GetComponent<Rigidbody>().AddForce(0, 0, 700);
+        if(hasFinalPush)
+        {
+            GetComponent<Rigidbody>().AddForce(0, 0, 100 * speed);
+            hasFinalPush = false;
+        }
     }
 }

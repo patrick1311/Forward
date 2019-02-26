@@ -9,9 +9,12 @@ public class GM : MonoBehaviour
     public ObstacleManager obstacleManager;
     public ScoreManager scoreManager;
     public GUIManager guiManager;
+    public PlayerMovement playerMovement;
     private GameObject player;
     private Transform camera;
-    private float speed = 10.0f;
+    private float speed = 7.0f;
+    private readonly float speedGrowth = 0.05f;
+    private readonly float speedCap = 15.0f;
     private bool endRun;
 
     void Start()
@@ -36,8 +39,13 @@ public class GM : MonoBehaviour
                 //Respawn GameObject to starting position
                 tileManager.SpawnTile();
                 //spawn 1 or 2 obstacles on each tile
-                obstacleManager.SpawnMulObstacles(Mathf.Abs(Random.Range(1, 3)), tileManager.GetNewTilePosZ());
+                obstacleManager.SpawnMulObstacles(Mathf.Abs(Random.Range(1, 4)), tileManager.GetNewTilePosZ());
                 tileManager.DestroyTile();
+
+                if (speed < speedCap)
+                {
+                    UpDifficulty();
+                }
             }
 
             //delete GameObject if they are in the safe zone (out of player view)
@@ -46,6 +54,12 @@ public class GM : MonoBehaviour
                 obstacleManager.DestroyObstacle();
             }
         }
+    }
+
+    void UpDifficulty()
+    {
+        speed += speedGrowth;
+        player.GetComponent<PlayerMovement>().SetPlayerSpeed(speed);
     }
 
     public void EndRun()
