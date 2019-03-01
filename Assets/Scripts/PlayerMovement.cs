@@ -12,6 +12,8 @@ public class PlayerMovement : MonoBehaviour
     private float width;
     private float height;
     private Touch touch;
+    public float jumpForce = 3;
+    public float gravity = 20f;
 
     private void Awake()
     {
@@ -23,7 +25,6 @@ public class PlayerMovement : MonoBehaviour
         controller = GetComponent<CharacterController>();
         rb = GetComponent<Rigidbody>();
         mesh = GetComponent<MeshCollider>();
-        Debug.Log(mesh.bounds.extents.x);
     }
 
     // Update is called once per frame
@@ -35,7 +36,19 @@ public class PlayerMovement : MonoBehaviour
             //update x
             movement.x = Input.GetAxisRaw("Horizontal") * speed;
 
-            if(Input.touchCount > 0)
+            /*
+            if(Input.GetKeyDown(KeyCode.Space) && isGrounded())
+            {
+                rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+
+            }
+            if(Input.GetButton("Jump"))
+            {
+                movement.y = jumpForce;
+            }
+            */
+
+            if (Input.touchCount > 0)
             {
                 if (Input.GetTouch(0).position.x > width)
                 {
@@ -47,11 +60,16 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
 
-            //Prevent player clipping into other objects
-            if(SafeToMove(movement))
-                transform.Translate(movement * Time.deltaTime);
+            //Prevent player clipping into other objects when move left and right
+            if (SafeToMove(movement))
+            //controller.Move(movement * Time.deltaTime);
+            transform.Translate(movement * Time.deltaTime);
         }
-
+        /*
+        movement.y -= gravity * Time.deltaTime;
+        if(SafeToMove(movement))
+            controller.Move(movement * Time.deltaTime);
+            */           
     }
 
     bool SafeToMove(Vector3 translation)
@@ -60,12 +78,18 @@ public class PlayerMovement : MonoBehaviour
         Collider[] cols = Physics.OverlapSphere(transform.position + translation * Time.deltaTime, mesh.bounds.extents.x);
         foreach (Collider col in cols)
         {
-            if (col.tag == "SideBarrier")
+            if (col.tag == "SideBarrier" || col.tag == "Obstacle")
             {
                 return false;
             }
         }
-        return true;      
+        return true;   
+    }
+
+    bool isGrounded()
+    {
+        Debug.Log(Physics.Raycast(transform.position, -Vector3.up, mesh.bounds.extents.y + 0.1f));
+        return Physics.Raycast(transform.position, -Vector3.up, mesh.bounds.extents.y + 0.001f); ;
     }
 
     public void SetPlayerSpeed(float gameSpeed)
