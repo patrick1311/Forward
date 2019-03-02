@@ -74,16 +74,44 @@ public class PlayerMovement : MonoBehaviour
 
     bool SafeToMove(Vector3 translation)
     {
+        RaycastHit hit;
+        Vector3 rayDirection = Vector3.zero;
+        bool isHit;
+
+        if(translation.x < 0) 
+        {
+            rayDirection = Vector3.left;
+        }
+        if(translation.x > 0)
+        {
+            rayDirection = Vector3.right;
+        }
+
         //check whether there is collider at the position player about to move to
+        isHit = Physics.Raycast(transform.position, rayDirection, out hit, mesh.bounds.extents.x);
+
+        if (isHit)
+        {
+            if (hit.collider.tag == "SideBarrier")
+            {
+                return false;
+            }
+
+        }
+
+        return true;
+
+        /*
         Collider[] cols = Physics.OverlapSphere(transform.position + translation * Time.deltaTime, mesh.bounds.extents.x);
         foreach (Collider col in cols)
         {
-            if (col.tag == "SideBarrier" || col.tag == "Obstacle")
+            Debug.Log(col.name);
+            if (col.tag == "SideBarrier")
             {
                 return false;
             }
         }
-        return true;   
+        */
     }
 
     bool isGrounded()
