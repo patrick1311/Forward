@@ -49,7 +49,7 @@ public class GM : MonoBehaviour
             }
 
             //delete GameObject if they are in the safe zone (out of player view)
-            while (obstacleManager.CanBeDeleted(camera.position.z))
+            while (obstacleManager.CanBeDeleted(camera.position.z - tileManager.GetTileLength()))
             {
                 obstacleManager.DestroyObstacle();
             }

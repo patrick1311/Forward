@@ -14,7 +14,6 @@ public class PlayerMovement : MonoBehaviour
     private Touch touch;
     private float maxHeight;
     private float jumpForce = 6f;
-    private float gravity;
 
     private void Awake()
     {
@@ -27,7 +26,6 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         mesh = GetComponent<MeshCollider>();
         maxHeight = 2.5f;
-        gravity = 5f;
     }
 
     // Update is called once per frame

@@ -59,4 +59,9 @@ public class TileManager : MonoBehaviour
     {
         return activeTiles[2].transform.position.z;
     }
+
+    public float GetTileLength()
+    {
+        return tileLength;
+    }
 }
