@@ -12,8 +12,9 @@ public class PlayerMovement : MonoBehaviour
     private float width;
     private float height;
     private Touch touch;
-    public float jumpForce = 3;
-    public float gravity = 20f;
+    private float maxHeight;
+    private float jumpForce = 6f;
+    private float gravity;
 
     private void Awake()
     {
@@ -25,6 +26,8 @@ public class PlayerMovement : MonoBehaviour
         controller = GetComponent<CharacterController>();
         rb = GetComponent<Rigidbody>();
         mesh = GetComponent<MeshCollider>();
+        maxHeight = 2.5f;
+        gravity = 5f;
     }
 
     // Update is called once per frame
@@ -36,17 +39,22 @@ public class PlayerMovement : MonoBehaviour
             //update x
             movement.x = Input.GetAxisRaw("Horizontal") * speed;
 
-            /*
-            if(Input.GetKeyDown(KeyCode.Space) && isGrounded())
+            if (transform.position.y >= 2)
             {
-                rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+                rb.velocity = Vector3.zero;
+            }
 
-            }
-            if(Input.GetButton("Jump"))
+            //Add jump force if player is not grounded
+            if (Input.GetKeyDown(KeyCode.UpArrow) && isGrounded())
             {
-                movement.y = jumpForce;
+                rb.AddForce(new Vector3(0, jumpForce, 0), ForceMode.Impulse);
             }
-            */
+
+            //Add downward force for faster drop
+            if(Input.GetKeyDown(KeyCode.DownArrow))
+            {
+                rb.AddForce(new Vector3(0, -jumpForce*2, 0), ForceMode.Impulse);
+            }
 
             if (Input.touchCount > 0)
             {
@@ -62,14 +70,8 @@ public class PlayerMovement : MonoBehaviour
 
             //Prevent player clipping into other objects when move left and right
             if (SafeToMove(movement))
-            //controller.Move(movement * Time.deltaTime);
-            transform.Translate(movement * Time.deltaTime);
-        }
-        /*
-        movement.y -= gravity * Time.deltaTime;
-        if(SafeToMove(movement))
-            controller.Move(movement * Time.deltaTime);
-            */           
+                transform.Translate(movement * Time.deltaTime);
+        }         
     }
 
     bool SafeToMove(Vector3 translation)
@@ -88,8 +90,7 @@ public class PlayerMovement : MonoBehaviour
 
     bool isGrounded()
     {
-        Debug.Log(Physics.Raycast(transform.position, -Vector3.up, mesh.bounds.extents.y + 0.1f));
-        return Physics.Raycast(transform.position, -Vector3.up, mesh.bounds.extents.y + 0.001f); ;
+        return Physics.Raycast(transform.position, -Vector3.up, mesh.bounds.extents.y); ;
     }
 
     public void SetPlayerSpeed(float gameSpeed)
