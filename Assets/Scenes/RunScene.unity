@@ -15,7 +15,7 @@ RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
   m_Fog: 1
-  m_FogColor: {r: 0.4156863, g: 0.8078432, b: 0.65882355, a: 1}
+  m_FogColor: {r: 0.36078432, g: 0.83921576, b: 0.8117648, a: 1}
   m_FogMode: 3
   m_FogDensity: 0.03
   m_LinearFogStart: 0
@@ -1276,7 +1276,7 @@ Light:
   serializedVersion: 8
   m_Type: 1
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 0.9
+  m_Intensity: 0.7
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -3498,7 +3498,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.4018334, g: 0.8113208, b: 0.6566255, a: 0}
+  m_BackGroundColor: {r: 0.33664113, g: 0.8396226, b: 0.8159812, a: 0}
   m_projectionMatrixMode: 1
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
@@ -9948,7 +9948,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1616037054}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.01, z: -5}
+  m_LocalPosition: {x: 0, y: -0.01, z: -6.6}
   m_LocalScale: {x: 10, y: 1, z: 8}
   m_Children: []
   m_Father: {fileID: 0}
@@ -13732,7 +13732,7 @@ PrefabInstance:
         type: 3}
       propertyPath: pools.Array.data[0].prefab
       value: 
-      objectReference: {fileID: 8972388115308208219, guid: d02a43dabf3bd4eefb6453462d7baba9,
+      objectReference: {fileID: 6351364300026380364, guid: 9b1e70688d9a44543876b5c9b6c7f9c4,
         type: 3}
     - target: {fileID: 4696554061618720168, guid: 7a46307d907b14cb4b4dc3ccad1e1fc1,
         type: 3}

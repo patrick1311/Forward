@@ -20,7 +20,8 @@ public class ObstacleManager : MonoBehaviour
     {
         for(int i = 0; i < activeObstacle.Count; i++)
         {
-            activeObstacle[i].transform.Translate(-Vector3.forward * Time.deltaTime * backwardSpeed);
+            //move obstacle in -z direction based on world space regardless of object rotation
+            activeObstacle[i].transform.Translate(-Vector3.forward * Time.deltaTime * backwardSpeed, Space.World);
         }
     }
 
@@ -33,6 +34,7 @@ public class ObstacleManager : MonoBehaviour
         else
             obj = ObjectPooler.Instance.GetPooledObject("Rock");
 
+        obj.transform.rotation = Quaternion.Euler(0, Random.Range(0, 4) * 90, 0);
         obj.transform.position = spawnPos;
         activeObstacle.Add(obj);
     }
