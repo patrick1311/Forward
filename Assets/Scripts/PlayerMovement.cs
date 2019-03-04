@@ -96,22 +96,9 @@ public class PlayerMovement : MonoBehaviour
             {
                 return false;
             }
-
         }
 
         return true;
-
-        /*
-        Collider[] cols = Physics.OverlapSphere(transform.position + translation * Time.deltaTime, mesh.bounds.extents.x);
-        foreach (Collider col in cols)
-        {
-            Debug.Log(col.name);
-            if (col.tag == "SideBarrier")
-            {
-                return false;
-            }
-        }
-        */
     }
 
     bool isGrounded()
@@ -121,7 +108,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void SetPlayerSpeed(float gameSpeed)
     {
-        speed = gameSpeed * 0.6f;
+        speed = gameSpeed * 0.7f;
         Debug.Log("Player speed: " + speed);
     }
 

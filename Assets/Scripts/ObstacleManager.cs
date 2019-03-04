@@ -27,13 +27,32 @@ public class ObstacleManager : MonoBehaviour
 
     public void SpawnObstacle(Vector3 spawnPos)
     {
-        GameObject obj;
+        GameObject obj = null;
 
-        if (Random.Range(0, 2) % typesOfObstacle == 0)
+        int randObstacle = Mathf.Abs(Random.Range(0, typesOfObstacle));
+        switch(randObstacle)
+        {
+            case 0:
+                obj = ObjectPooler.Instance.GetPooledObject("Tree");
+                break;
+            case 1:
+                obj = ObjectPooler.Instance.GetPooledObject("Rock1");
+                break;
+            case 2:
+                obj = ObjectPooler.Instance.GetPooledObject("Rock2");
+                break;
+            case 3:
+                obj = ObjectPooler.Instance.GetPooledObject("Rock3");
+                break;
+            default:
+                Debug.Log("Error in generating random obstacles.");
+                break;
+        }/*
+        if (Random.Range(0, typesOfObstacle))
             obj = ObjectPooler.Instance.GetPooledObject("Tree");
         else
             obj = ObjectPooler.Instance.GetPooledObject("Rock");
-
+            */
         obj.transform.rotation = Quaternion.Euler(0, Random.Range(0, 4) * 90, 0);
         obj.transform.position = spawnPos;
         activeObstacle.Add(obj);

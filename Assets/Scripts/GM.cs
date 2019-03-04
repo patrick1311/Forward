@@ -12,7 +12,7 @@ public class GM : MonoBehaviour
     public PlayerMovement playerMovement;
     private GameObject player;
     private Transform camera;
-    private float speed = 9f;
+    private float speed = 12f;
     private readonly float speedGrowth = 0.05f;
     private readonly float speedCap = 12.0f;
     private bool endRun;

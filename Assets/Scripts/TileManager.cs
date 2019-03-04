@@ -5,9 +5,8 @@ using UnityEngine;
 public class TileManager : MonoBehaviour
 {
     public int tilesOnScreen = 10;
-    private readonly int tileLength = 9;
+    public int tileLength = 9;
     private List<GameObject> activeTiles;
-
 
     void Start()
     {
