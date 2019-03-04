@@ -12,9 +12,9 @@ public class GM : MonoBehaviour
     public PlayerMovement playerMovement;
     private GameObject player;
     private Transform camera;
-    private float speed = 7.0f;
+    private float speed = 9f;
     private readonly float speedGrowth = 0.05f;
-    private readonly float speedCap = 15.0f;
+    private readonly float speedCap = 12.0f;
     private bool endRun;
 
     void Start()
@@ -38,7 +38,7 @@ public class GM : MonoBehaviour
 
                 //Respawn GameObject to starting position
                 tileManager.SpawnTile();
-                //spawn 1 or 2 obstacles on each tile
+                //spawn 1-3 obstacles on each tile 
                 obstacleManager.SpawnMulObstacles(Mathf.Abs(Random.Range(1, 4)), tileManager.GetNewTilePosZ());
                 tileManager.DestroyTile();
 

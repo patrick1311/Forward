@@ -122,7 +122,7 @@ public class PlayerMovement : MonoBehaviour
     public void SetPlayerSpeed(float gameSpeed)
     {
         speed = gameSpeed * 0.6f;
-        //Debug.Log("Player speed: " + speed);
+        Debug.Log("Player speed: " + speed);
     }
 
     public void StopMovement()
