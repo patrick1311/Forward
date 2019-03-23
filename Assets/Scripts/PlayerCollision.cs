@@ -6,6 +6,7 @@ public class PlayerCollision : MonoBehaviour
 {
     public PlayerMovement playerMovement;
     public BoxCollider sideCol;
+    public Animator playerAnim;
 
     private void Start()
     {
@@ -16,10 +17,13 @@ public class PlayerCollision : MonoBehaviour
     {
         if (collision.collider.tag == "Obstacle")
         {
+            //if hit on the side return
+
+            //else end run
             collision.collider.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
             playerMovement.StopMovement();
             playerMovement.PushPlayer();
-
+            playerAnim.Play("walk");
             //Stop environment from moving
             FindObjectOfType<GM>().EndRun();
         }

@@ -29,7 +29,7 @@ public class ObstacleManager : MonoBehaviour
     {
         GameObject obj = null;
 
-        int randObstacle = Mathf.Abs(Random.Range(0, typesOfObstacle));
+        int randObstacle = Mathf.Abs(Random.Range(1, typesOfObstacle));
         switch(randObstacle)
         {
             case 0:

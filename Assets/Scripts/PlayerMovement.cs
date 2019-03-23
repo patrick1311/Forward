@@ -89,7 +89,6 @@ public class PlayerMovement : MonoBehaviour
 
         //check whether there is collider at the position player about to move to
         isHit = Physics.Raycast(transform.position, rayDirection, out hit, mesh.bounds.extents.x);
-
         if (isHit)
         {
             if (hit.collider.tag == "SideBarrier")
@@ -97,7 +96,6 @@ public class PlayerMovement : MonoBehaviour
                 return false;
             }
         }
-
         return true;
     }
 
