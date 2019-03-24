@@ -29,7 +29,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if(movementEnabled)
         {
@@ -43,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
             }
 
             //Add jump force if player is not grounded
-            if (Input.GetKeyDown(KeyCode.UpArrow) && isGrounded())
+            if (Input.GetKeyDown(KeyCode.UpArrow) && IsGrounded())
             {
                 rb.AddForce(new Vector3(0, jumpForce, 0), ForceMode.Impulse);
             }
@@ -88,18 +88,34 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //check whether there is collider at the position player about to move to
+
         isHit = Physics.Raycast(transform.position, rayDirection, out hit, mesh.bounds.extents.x);
-        if (isHit)
+        if(isHit)
         {
             if (hit.collider.tag == "SideBarrier")
+                return false;
+        }
+
+        RaycastHit obstacleHit;
+        //Cast a mesh-sized box in the moving direction
+        bool detectCol = Physics.BoxCast(transform.position, 
+                                        new Vector3(0,mesh.bounds.extents.y, mesh.bounds.extents.z), 
+                                        rayDirection, out obstacleHit, 
+                                        Quaternion.Euler(0,0,0), 
+                                        mesh.bounds.extents.x + 0.1f);  
+        if (detectCol)
+        {
+            if (obstacleHit.collider.tag == "Obstacle")
             {
+                //Debug.Log("Hit ostacle");
                 return false;
             }
         }
+
         return true;
     }
 
-    bool isGrounded()
+    bool IsGrounded()
     {
         return Physics.Raycast(transform.position, -Vector3.up, mesh.bounds.extents.y); ;
     }

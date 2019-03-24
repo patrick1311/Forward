@@ -20,7 +20,7 @@ public class PlayerCollision : MonoBehaviour
             //if hit on the side return
 
             //else end run
-            collision.collider.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+            //collision.collider.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
             playerMovement.StopMovement();
             playerMovement.PushPlayer();
             playerAnim.Play("walk");

@@ -44,7 +44,7 @@ public class GM : MonoBehaviour
 
                 if (speed < speedCap)
                 {
-                    UpDifficulty();
+                   // UpDifficulty();
                 }
             }
 
