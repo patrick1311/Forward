@@ -7,6 +7,7 @@ public class PlayerCollision : MonoBehaviour
     public PlayerMovement playerMovement;
     public Animator playerAnim;
     public ParticleSystem collisionParticle;
+    public GM gameManager;
 
     private void Start()
     {
@@ -15,7 +16,7 @@ public class PlayerCollision : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.tag == "Obstacle")
+        if (collision.collider.tag == "Obstacle" && !gameManager.IsEnded())
         {
             collision.collider.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
             collisionParticle.transform.position = playerMovement.transform.position;
@@ -24,7 +25,7 @@ public class PlayerCollision : MonoBehaviour
             playerMovement.PushPlayer();
             playerAnim.Play("walk");
             //Stop environment from moving
-            FindObjectOfType<GM>().EndRun();
+            gameManager.EndRun();
         }
     }
 }

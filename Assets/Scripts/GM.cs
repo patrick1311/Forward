@@ -65,7 +65,17 @@ public class GM : MonoBehaviour
     public void EndRun()
     {
         endRun = true;
+        int highscore = scoreManager.GetScore();
+        if(highscore > PlayerPrefs.GetInt("HighScore", 0)) {
+            PlayerPrefs.SetInt("HighScore", highscore);
+        }
+
+        Debug.Log("high score now : " + PlayerPrefs.GetInt("HighScore"));
         guiManager.ActiveEndMenu();
     }
 
+    public bool IsEnded()
+    {
+        return endRun;
+    }
 }

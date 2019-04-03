@@ -6792,7 +6792,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1073849724}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 10
   m_Drag: 0
   m_AngularDrag: 0
   m_UseGravity: 1
@@ -12228,6 +12228,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: CollisionParticle
+      objectReference: {fileID: 0}
+    - target: {fileID: 9147418902215104970, guid: 58badf43151b54a9c813791f0f96feff,
+        type: 3}
+      propertyPath: lengthInSec
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9147418902215104970, guid: 58badf43151b54a9c813791f0f96feff,
+        type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 9147418902215104970, guid: 58badf43151b54a9c813791f0f96feff,
+        type: 3}
+      propertyPath: simulationSpeed
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 9147418902215104965, guid: 58badf43151b54a9c813791f0f96feff,
         type: 3}

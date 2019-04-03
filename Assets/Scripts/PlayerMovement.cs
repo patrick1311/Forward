@@ -138,7 +138,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if(hasFinalPush)
         {
-            GetComponent<Rigidbody>().AddForce(0, 0, 100 * speed);
+            GetComponent<Rigidbody>().AddForce(0, 0, 1000 * speed);
             hasFinalPush = false;
         }
     }
