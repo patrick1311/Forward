@@ -68,9 +68,9 @@ public class GM : MonoBehaviour
         int highscore = scoreManager.GetScore();
         if(highscore > PlayerPrefs.GetInt("HighScore", 0)) {
             PlayerPrefs.SetInt("HighScore", highscore);
+            //display some gz highscore animation
         }
 
-        Debug.Log("high score now : " + PlayerPrefs.GetInt("HighScore"));
         guiManager.ActiveEndMenu();
     }
 

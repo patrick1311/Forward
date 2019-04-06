@@ -10,5 +10,8 @@ public class HomeMenu : MonoBehaviour
         SceneManager.LoadScene("RunScene");
     }
 
-
+    public void ResetData()
+    {
+        PlayerPrefs.DeleteAll();
+    }
 }
