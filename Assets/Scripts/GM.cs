@@ -16,6 +16,7 @@ public class GM : MonoBehaviour
     private readonly float speedGrowth = 0.05f;
     private readonly float speedCap = 12.0f;
     private bool endRun;
+    public float skyboxSpeed;
 
     void Start()
     {
@@ -26,6 +27,7 @@ public class GM : MonoBehaviour
 
     void Update()
     {
+        RenderSettings.skybox.SetFloat("_Rotation", Time.time * skyboxSpeed);
         if(!endRun)
         {
             tileManager.MoveBack(speed);
